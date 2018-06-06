@@ -16,7 +16,10 @@
 </head>
 
 <body>
-    
+    </br>
+ <h4 style="text-align:center;"> Edit your comment here:</h4>
+     </br>
+                  
 <?php
 $cid = $_POST['cid'];
 $uid = $_POST['uid'];
@@ -35,6 +38,7 @@ echo "<div align='center'>
 
 
 ?>
+
 
 </body>
 </html>

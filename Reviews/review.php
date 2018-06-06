@@ -16,7 +16,7 @@
     <title>Review </title>
     <link rel="stylesheet" type="text/css" href="style.css">
     </br>
-    <h1 style="text-align:center;">Reviews</h1>
+    <h2 style="text-align:center;"> College C&S Reviews page</h2>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                     <div class='col-md-4' style='float: none;
                          margin: 0 auto'>
                             <div class='form-group'>
-                                <label> colleges List</label>
+                            <label> Pick a College </label>
                                 <center><select class='form-control' name='cPic'>
                                     <option value='Natinal college of Ireland'> NCI</option>
                                     <option value='Dublin institute of technology'>DIT</option>

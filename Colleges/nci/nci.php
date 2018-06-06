@@ -106,9 +106,10 @@
                       </div>
                     </div>
                   </div>
+                  </br>
                 <!-- Clubs and Socs list -->
                 <div class="container">
-                      <h2 bgcolor="#FF0000">NCI Socities</h2>
+                      <h2>NCI Socities</h2>
                       <table class="table table-bordered">
                         <tbody>
                           <tr>
@@ -135,7 +136,7 @@
                       </table>
                     </div>
                      <div class="container">
-                      <h2 bgcolor="#FF0000">NCI Clubs</h2>
+                      <h2>NCI Clubs</h2>
                       <table class="table table-bordered">
                         <tbody>
                           <tr>
