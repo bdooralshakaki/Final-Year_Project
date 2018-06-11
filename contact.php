@@ -47,7 +47,6 @@
                     $valid++;
                 }
             }
-            
             $email=$_POST["email"];
             if( empty($email) )
             {
@@ -66,7 +65,8 @@
                     $email=test_data($email);
                     $valid++;
                 }   
-            }       
+            }   
+            
             $phone=$_POST["phone"];
             if( empty($phone) )
             {
@@ -86,9 +86,7 @@
                     $valid++;
                 }   
             }
-            
             $comment=$_POST["comment"];
-            
     }
     if($valid==3)
     {

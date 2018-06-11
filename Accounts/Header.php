@@ -13,18 +13,6 @@
         $opt = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false, ];
         $conn = new PDO($dsn, $user, $pass, $opt);
 
-        //start of session time out
-        if( $_SESSION['last_activity'] < time()-$_SESSION['expire_time'] ) { //have we expired?
-            //redirect to logout
-            header('Location:../Accounts/Logout.php');
-        } else{
-            $_SESSION['last_activity'] = time(); //this was the moment of last activity.
-        }
-		$_SESSION['logged_in'] = true; //set you've logged in
-		$_SESSION['last_activity'] = time(); //your last activity was now, having logged in.
-		$_SESSION['expire_time'] = 10*60; //expire time in seconds
-    	//end of session time out
-
     	// if session is not set this will redirect to login page
     	if( !isset($_SESSION['user']) ) {
     		header("Location: ../index.php");

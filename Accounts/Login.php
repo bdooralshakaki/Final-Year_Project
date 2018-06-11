@@ -20,7 +20,6 @@
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
   // prevent sql injections / clear user invalid inputs
-
  if (!$error) {
 			$password = hash('sha256', $pass);  
 			$res = $conn->prepare('SELECT userId, userName, userPass FROM users WHERE userEmail = ? LIMIT 1');

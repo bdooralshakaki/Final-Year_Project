@@ -35,8 +35,6 @@ echo "<div align='center'>
     <button type='submit' name='commentSubmit'> Edit </button>
 </form>
 </div>";
-
-
 ?>
 
 

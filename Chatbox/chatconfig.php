@@ -5,8 +5,7 @@
     $db = "ccs";
     $charset = 'utf8mb4';
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
- 
+    
 try {
         $dbh = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
         
@@ -36,11 +35,9 @@ try {
          echo $e->getMessage();
         }
 
-
 if($_POST['refresh']) {
     populate_shoutbox();
 }
-
 
 function populate_shoutbox() {
     global $dbh;

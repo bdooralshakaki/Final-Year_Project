@@ -3,7 +3,6 @@
  ob_start();
  session_start();
     include '../Accounts/Header.php';
-    include '../Database/dbconnect.php';
     include 'dbConnect.php';
     include 'comments.link.php';
     
@@ -16,7 +15,7 @@
     <title>Review </title>
     <link rel="stylesheet" type="text/css" href="style.css">
     </br>
-    <h2 style="text-align:center;"> College C&S Reviews page</h2>
+    <h1 style="text-align:center;">College C&S Review page</h1>
 </head>
 
 <body>
@@ -29,7 +28,7 @@
                     <div class='col-md-4' style='float: none;
                          margin: 0 auto'>
                             <div class='form-group'>
-                            <label> Pick a College </label>
+                                <label> colleges List</label>
                                 <center><select class='form-control' name='cPic'>
                                     <option value='Natinal college of Ireland'> NCI</option>
                                     <option value='Dublin institute of technology'>DIT</option>
@@ -41,13 +40,12 @@
                             </div>
                     </div>
                 </div>
-            <input type='hidden' name='uid' value='Anonymous'>
+            <input type='hidden' name='uid' value='".$_SESSION['user']."'>
             <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
             <textarea name='message'></textarea><br>
             <button type='submit' name='commentSubmit'> Submit Review </button>
         </form>";
         getComments($conn);
-        
         $cPic = $_POST['cPic'];
         ?>
     </div>

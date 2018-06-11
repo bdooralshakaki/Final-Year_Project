@@ -47,13 +47,13 @@
        }
        
       // EMAIL VALIDATION
-       		if(!preg_match('/^[a-zA-Z0-9.]+@gmail\.com$/', $email)){ // forcing exact email
+       		if(!preg_match('/^x[\d]{8}@(student.ncirl.ie|dit.ie|dcu.ie|ucd.ie|tcd.ie|mu.ie)$/', $email)){ // forcing exact email
        		    // Return Error - Invalid Email
        		    $error = true;
        		    $emailError = 'The email you have entered is invalid, please try again.';
        		} 
        		else{
-       			// check email exist or not
+       			//Checking if the email already in use
        			$res = $conn->prepare("SELECT userEmail FROM users WHERE userEmail = ?");
        			$res -> execute([$email]);
        			$row = $res->fetch(PDO::FETCH_ASSOC);
@@ -92,7 +92,6 @@
     			$error = true;
     			$passError = "Password cannot be the same as name";
     		}
-  
   // PASSWORD VALIDATION
   
   // password encrypt using SHA256();
@@ -101,13 +100,11 @@
   // if there's no error, continue to signup
    
        if( !$error ){
-     			
      	        $stmt = $conn->prepare("INSERT INTO users (userName, userEmail, userPass, userDate) VALUES (:userName, :userEmail, :userPass, NOW())");
      	        $stmt->bindParam(':userName', $name);
      	        $stmt->bindParam(':userEmail', $email);
      	        $stmt->bindParam(':userPass', $password);
      	        $stmt->execute();
-           			
            			if ($res) {
            				$errTyp = "success";
            				$errMSG = "Successfully registered, you may login now";
@@ -120,7 +117,6 @@
            				$errTyp = "danger";
            				$errMSG = "Something went wrong, try again later...";	
            			}	
-     				
      		}
  }
  

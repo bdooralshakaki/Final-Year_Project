@@ -5,7 +5,7 @@
 	
 	// if session is not set this will redirect to login page
 	if( !isset($_SESSION['user']) ) {
-		header("Location: ../clubsandsoc.php"); //Should be index.php
+		header("Location: ../index.php"); //Should be index.php
 		exit;
 	}
 	
