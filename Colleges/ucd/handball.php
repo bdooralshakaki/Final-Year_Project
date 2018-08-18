@@ -1,11 +1,10 @@
 <?php
-	ob_start();
-	session_start();
-	
-	include '../../Database/dbconnect.php';
-	include '../../Accounts/Header.php';
-?>
+    include ("../../Database/dbconnect.php");
 
+    if (!isset($_SESSION["user"])) {
+		echo '<script type="text/javascript">window.location = "../";</script>';
+	} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,20 +19,17 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
   <body>
+    <?php include("../../Accounts/navbar.php"); ?>
     <!-- Page Content -->
     <div class="container">
-
-      <!-- Portfolio Item Heading -->
       <h1 class="my-4"> UCD GAA Club
         <small>UCD</small>
       </h1>
-
-      <!-- Portfolio Item Row -->
       <div class="row">
-
         <div class="col-md-8">
           <img class="img-fluid" src="../../img/ucd/handballsoc.jpg" alt="">
         </div>
@@ -54,20 +50,11 @@
         </div>
       </div>
     </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
-    <footer class="py-2 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; College C&S 2018</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
     <!-- Bootstrap core JavaScript -->
     <script src="../../vendor/jquery/jquery.min.js"></script>
     <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
-
 </html>
+<?php } ?>
+<?php $conn = null; ?>

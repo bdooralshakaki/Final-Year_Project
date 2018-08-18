@@ -1,11 +1,10 @@
 <?php
-	ob_start();
-	session_start();
-	
-	include '../../Database/dbconnect.php';
-	include '../../Accounts/Header.php';
-?>
+    include ("../../Database/dbconnect.php");
 
+    if (!isset($_SESSION["user"])) {
+		echo '<script type="text/javascript">window.location = "../";</script>';
+	} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +24,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
   </head>
   <body>
+          <?php include ("../../Accounts/navbar.php"); ?>
     <!-- Page Content -->
     <div class="container">
         <div class="card text-white bg-secondary my-4 text-center">
@@ -169,3 +169,5 @@
   </body>
 
 </html>
+<?php } ?>
+<?php $conn = null; ?>

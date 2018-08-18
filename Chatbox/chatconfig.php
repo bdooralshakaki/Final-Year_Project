@@ -1,55 +1,44 @@
 <?php
-	$host = "localhost";
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+
+    $host = "localhost";
     $user = "x14303766";
     $pass = "";
     $db = "ccs";
     $charset = 'utf8mb4';
+
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    
-try {
-        $dbh = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-        
-            if($_POST['name']) {
-                $name       = $_POST['name'];
-                $message    = $_POST['message'];
-                
-                /*** set all errors to execptions ***/
-                $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                
-                $sql = "INSERT INTO chat (date_time, name, message)
-                        VALUES (NOW(), :name, :message)";
-                /*** prepare the statement ***/
-                $stmt = $dbh->prepare($sql);
-            
-                /*** bind the params ***/
-                $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-                $stmt->bindParam(':message', $message, PDO::PARAM_STR);
-            
-                /*** run the sql statement ***/
-                if ($stmt->execute()) {
-                    populate_shoutbox();
-                }
-            }
-        }
-        catch(PDOException $e) {
-         echo $e->getMessage();
-        }
+	try {
+        $opt = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false, ];
+        $conn = new PDO($dsn, $user, $pass, $opt);
 
-if($_POST['refresh']) {
-    populate_shoutbox();
-}
+        $colname_session = "-1";
+		if (isset($_SESSION['user'])) {
+			$colname_session = $_SESSION['user'];
+		}
+		$query_session = $conn->prepare('SELECT * FROM users WHERE sessionId = ?');
+		if ($query_session->execute([$colname_session])) {
+			$row_session = $query_session->fetch();
+		}
 
-function populate_shoutbox() {
-    global $dbh;
-    $sql = "select * from chat order by date_time desc limit 15";
-    echo '<design>';
-    foreach ($dbh->query($sql) as $row) {
-        echo '<li>';
-        echo '<span class="date">'.date("d.m.Y H:i", strtotime($row['date_time'])).'</span>';
-        echo '<span class="name">'.$row['name'].'</span></br>';
-        echo '<span class="message">'.$row['message'].'</span>';
-        echo '</li>';
+        if(!empty($_POST['message'])) {
+            
+            $stmt = $conn->prepare("INSERT INTO chat (date_time, name, message) VALUES (:date_time, :name_chat, :message)");
+            /*** bind the params ***/
+            $stmt->bindParam(':date_time', $date_time);
+            $stmt->bindParam(':name_chat', $name_chat);
+            $stmt->bindParam(':message', $message);
+            $date_time = $_POST['date_time'];
+            $name_chat = $row_session['userName'];
+            $message = $_POST['message'];
+            $stmt->execute();
+        } else {
+            echo "Please make sure that all fields have been filled out.";
+        }
     }
-    echo '</design>';
-}
+    catch(PDOException $e) {
+        echo $e->getMessage();
+    }
 ?>

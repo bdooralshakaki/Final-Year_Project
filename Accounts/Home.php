@@ -5,7 +5,7 @@
 	
 	// if session is not set this will redirect to login page
 	if( !isset($_SESSION['user']) ) {
-		header("Location: ../index.php"); //Should be index.php
+		header("Location: ../college"); //Should be index.php
 		exit;
 	}
 	
@@ -29,7 +29,7 @@
         
         <body>
             Hi' <?php echo $userRow['Name']; ?>&nbsp;</a>
-            <a href="Logout.php">Sign Out</a>
+            <a href="logout.php">Sign Out</a>
     
             <!-- jQuery first, then Tether, then Bootstrap JS. -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>

@@ -1,11 +1,10 @@
 <?php
-	ob_start();
-	session_start();
-	
-	include '../../Database/dbconnect.php';
-	include '../../Accounts/Header.php';
-?>
+    include ("../../Database/dbconnect.php");
 
+    if (!isset($_SESSION["user"])) {
+		echo '<script type="text/javascript">window.location = "../";</script>';
+	} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,9 +26,9 @@
   </head>
   <body>
     <!-- Page Content -->
+     <?php include("../../Accounts/navbar.php"); ?>
+
     <div class="container">
-      </br>
-       
         <div class="card text-white bg-secondary my-4 text-center">
         <div class="card-body">
           <p class="text-white m-0">Trinity College Dublin</p>
@@ -170,3 +169,5 @@
   </body>
 
 </html>
+<?php } ?>
+<?php $conn = null; ?>

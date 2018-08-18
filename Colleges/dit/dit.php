@@ -1,10 +1,11 @@
 <?php
-	ob_start();
-	session_start();
-	
-	include '../../Database/dbconnect.php';
-	include '../../Accounts/Header.php';
+    include ("../../Database/dbconnect.php");
+
+    if (!isset($_SESSION["user"])) {
+		echo '<script type="text/javascript">window.location = "../";</script>';
+	} else {
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +26,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
   </head>
   <body>
+          <?php include("../../Accounts/navbar.php"); ?>
     <!-- Page Content -->
     <div class="container">
-      </br>
-       
         <div class="card text-white bg-secondary my-4 text-center">
         <div class="card-body">
           <p class="text-white m-0">Dublin institute of technology</p>
@@ -45,10 +45,7 @@
           <a class="twitter-timeline" data-width="350" data-height="350" href="https://twitter.com/ditsocieties?lang=en">Tweets by DIT_ClubsandSoc </a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>        <!-- /.col-md-4 -->
           </div>
           </br>
-        <!-- /.row -->
-
-      <!-- Content Row -->
-      
+    
        <div id="wrapper2">
           <div id="page-wrapper">
             <div class="row">
@@ -153,7 +150,7 @@
                         </tbody>
                       </table>
                     </div>
-                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -173,3 +170,5 @@
   </body>
 
 </html>
+<?php } ?>
+<?php $conn = null; ?>

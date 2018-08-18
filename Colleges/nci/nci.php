@@ -1,11 +1,10 @@
 <?php
-	ob_start();
-	session_start();
-	
-	include '../../Database/dbconnect.php';
-	include '../../Accounts/Header.php';
-?>
+    include ("../../Database/dbconnect.php");
 
+    if (!isset($_SESSION["user"])) {
+		echo '<script type="text/javascript">window.location = "../";</script>';
+	} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +27,7 @@
    <link href="../css/small-business.css" rel="stylesheet">
   </head>
   <body>
+              <?php include("../../Accounts/navbar.php"); ?>
     <!-- Page Content -->
     <div class="container">
         <div class="card text-white bg-secondary my-4 text-center">
@@ -57,7 +57,7 @@
                 <div class="row text-center">
                   <div class="col-lg-3 col-md-6 mb-4">
                     <div class="card">
-                      <img class="img-fluid rounded" src="../../img/nci/ncimusic1.jpg" alt="">
+                      <img class="img-fluid rounded" src="../../img/nci/ncimusic.jpg" alt="">
                       <div class="card-body">
                         <h4 class="card-title">Music Society</h4>
                         <p class="card-text">Welcome to NCI Music society, for more information click below.</p>
@@ -165,7 +165,7 @@
         </div>
     </div>
   </div>
-    <!-- /.container -->
+
     
 
     <!-- Footer -->
@@ -173,13 +173,9 @@
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; College C&S</p>
       </div>
-      <!-- /.container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-  
-   
-
+    
   </body>
-
 </html>
+<?php } ?>
+<?php $conn = null; ?>

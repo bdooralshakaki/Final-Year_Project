@@ -1,11 +1,10 @@
 <?php
-	ob_start();
-	session_start();
-	
-	include '../../Database/dbconnect.php';
-	include '../../Accounts/Header.php';
-?>
+    include ("../../Database/dbconnect.php");
 
+    if (!isset($_SESSION["user"])) {
+		echo '<script type="text/javascript">window.location = "../";</script>';
+	} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +31,7 @@
    <link href="../css/small-business.css" rel="stylesheet">
   </head>
   <body>
+        <?php include("../../Accounts/navbar.php"); ?>
     <!-- Page Content -->
   <div class="container">
       <div class="card text-white bg-secondary my-4 text-center">
@@ -164,19 +164,12 @@
         </div>
       </div>
     </div>
-    <!-- /.container -->
-    <!-- Footer -->
     <footer class="py-3 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; College C&S</p>
       </div>
-      <!-- /.container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-  
-   
-
-  </body>
-
+</body>
 </html>
+<?php } ?>
+<?php $conn = null; ?>

@@ -5,7 +5,7 @@
 	// but I strongly suggest you to use PDO or MySQLi.
 	
 	$dbHost = 'localhost';
-	$dbUsername = 'root';
+	$dbUsername = 'x14303766';
 	$dbPassword = '';
 	$dbName = 'ccs';
 	

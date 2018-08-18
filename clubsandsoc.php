@@ -1,12 +1,38 @@
 <?php
-    ob_start();
-    session_start();
-    
-    include 'Database/dbconnect.php';
-    include_once 'Accounts/Header.php';
-    
-?>
+	
+    if (!isset($_SESSION)) {
+        session_start();
+    }
 
+    $host = "localhost";
+    $user = "x14303766";
+    $pass = "";
+    $db = "ccs";
+    $charset = 'utf8mb4';
+
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+	try {
+        $opt = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false, ];
+        $conn = new PDO($dsn, $user, $pass, $opt);
+
+        $colname_session = "-1";
+		if (isset($_SESSION['user'])) {
+			$colname_session = $_SESSION['user'];
+		}
+		$query_session = $conn->prepare('SELECT * FROM users WHERE sessionId = ?');
+		if ($query_session->execute([$colname_session])) {
+			$row_session = $query_session->fetch();
+		}
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    
+    
+    if (!isset($_SESSION["user"])) {
+		echo '<script type="text/javascript">window.location = "../";</script>';
+	} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +47,8 @@
 
     <!-- Custom styles for this template -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-   
-    
+     <link rel="stylesheet" href="../css/bootstrap1.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>
       function myFunction() {
       var input, filter, table, tr, td, i;
@@ -43,10 +69,15 @@
          }
         }
     </script>
+    	<style>
+		.w3-allerta {
+		    font-family: "Tangerine", serif;
+		}
+		</style>
 
   </head>
   <body>
-
+      <?php include ("Accounts/navbar.php"); ?>
     <!-- Page Content -->
     <div class="container">
        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -58,18 +89,18 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
         </ol>
-           <center><h1 class="my-4">Welcome to Clubs and Societies page</h1></center>
+        <hr>
+           <center><h1 class="my-4  w3-container w3-allerta w3-xxxlarge">Welcome to Clubs and Societies page</h1></center>
+        <hr>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('../img/nciball1.jpg')">
+          <div class="carousel-item active" style="background-image: url('../img/nciball.jpg')">
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('../img/nciball2.jpg')">
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('../img/nciball3.jpg')">
-          </div>
-           <div class="carousel-item" style="background-image: url('../img/ditball.jpg')">
           </div>
            <div class="carousel-item" style="background-image: url('../img/ucdball.jpg')">
           </div>
@@ -123,6 +154,17 @@
             </div>
             <div class="card-footer">
               <center><a href="../Events/Events1.php" class="btn btn-primary">Events</a></center>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 mb-8">
+          <div class="card h-100">
+            <center><h4 class="card-header">Create a page</h4></center>
+            <div class="card-body">
+              <center><p class="card-text">This is for student who wish to add their club/socs page to the website, Fill out the form!</p></center>
+            </div>
+            <div class="card-footer">
+              <center><a href="../Colleges/page.php" class="btn btn-primary">Create a page</a></center>
             </div>
           </div>
         </div>
@@ -248,3 +290,5 @@
     
 </body>
 </html>
+<?php } ?>
+<?php $conn = null;

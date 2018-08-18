@@ -2,7 +2,7 @@
     ob_start();
     session_start();
 
-    include '../Accounts/Header.php';
+    include '../Accounts/navbar.php';
     include '../Database/dbconnect.php';
     include 'functions.php';
 ?>
@@ -18,15 +18,10 @@
     <meta name="author" content="">
 
     <title>Clubs and Societies</title>
-
-    <!-- <link href="Eventsbootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="Eventsbusiness-casual.css" rel="stylesheet"> -->
   	<link href="Eventsstyle.css" rel="stylesheet"> 
-  	 
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script type="../text/javascript" src="js/addingajax.js"></script>
-    <script src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap1.min.css">
+
      
     
 </head>
@@ -53,27 +48,23 @@
                     <h2 class="brand-before">
                         <small>Welcome to</small>
                     </h2>
-
                     <h1 class="brand-name">Colleges Clubs and Socs Events</h1>
                     <hr class="tagline-divider">
-
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-
                             <div class="item active">
-                                <img class="img-responsive img-full" src="../img/ditmusicsoc.jpg" alt="">
+                                <img class="img-responsive img-full" src="../img/dit/ditball2.jpg" alt="">
                             </div>
                             <div class="item">
-                                <img class="img-responsive img-full" src="../img/nciball4.jpg" alt="">
+                                <img class="img-responsive img-full" src="../img/ucdball2.jpg" alt="">
                             </div>
                             <div class="item">
-                                <img class="img-responsive img-full" src="../img/nciball7.jpg" alt="">
+                                <img class="img-responsive img-full" src="../img/nciball11.jpg" alt="">
                             </div>
                             <div class="item">
-                                <img class="img-responsive img-full" src="../img/nciball6.jpg" alt="">
+                                <img class="img-responsive img-full" src="../img/maynoothball.jpg" alt="">
                             </div>
                         </div>
-
                         <!-- Controls -->
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                             <span class="icon-prev"></span>
@@ -96,7 +87,7 @@
                   <div class="col-lg-12">
                     <hr>
                     <h2 class="intro-text text-center">
-                        <strong>Events</strong>
+                        <strong>Events Calendar</strong>
                     </h2>
                     <hr>
                 </div>
@@ -111,8 +102,17 @@
         	</div>
  		</div>
 	</div>
+	 <br><br>
+        <footer class="py-3 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-light">Copyright &copy; College C&S 2018</p>
+            </div>
+        </footer>
 </body>
-
+  <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="../text/javascript" src="js/addingajax.js"></script>
+    <script src="../js/jquery.min.js"></script>
 
 </html>
 <?php ob_end_flush(); ?>

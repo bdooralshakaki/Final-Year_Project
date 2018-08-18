@@ -2,7 +2,7 @@
     ob_start();
     session_start();
 
-    include '../Accounts/Header.php';
+    include '../Accounts/navbar.php';
     include '../Database/dbconnect.php';
     
     
@@ -13,6 +13,9 @@
 <head>
     <title>College C&S </title> 
     <link rel="stylesheet" type="text/css" href="../css/events.css">
+    <link rel="stylesheet" href="../css/bootstrap1.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <div id="wrapper">
@@ -27,11 +30,14 @@
                                     <h1>Colleges Events</h1>
                                     <h3>Scroll down to see all Events</h3>
                                     <hr>
+                                    <hr>
                                     <button class="btn btn-default btn-lg"><i class="fa fa-hand-o-right" aria-hidden="true"></i><a href="events.php">Take me to Events Calendar</a></button>
+
                                 </div><!-- /.content -->
                             </div><!-- /.col-lg-12 -->
                         </div><!-- /.row -->
                     </div><!-- /.container -->
+                    
                 </div><!-- /.Hero -->
                     <div id="offers">
                         <h3 class="events">Have an event to promote? Contact us at <a href="mailto:andremacnamara12@gmail.com?Subject=Hello%20again" target="_top">info@collegecs.ie</a></h3>
